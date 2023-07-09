@@ -1,7 +1,7 @@
 name: run
 
 on:
-  workflow_dispatch:
+  GLADOS checkin:
   push:
   schedule:
     - cron: 10 0 * * *
