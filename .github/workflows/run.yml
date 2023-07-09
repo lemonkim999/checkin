@@ -1,7 +1,7 @@
 name: run
 
 on:
-  GLADOS checkin:
+  fork:
   push:
   schedule:
     - cron: 10 0 * * *
