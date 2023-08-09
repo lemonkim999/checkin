@@ -10,7 +10,7 @@ const glados = async () => {
     const checkin = await fetch('https://glados.rocks/api/user/checkin', {
       method: 'POST',
       headers: { ...headers, 'content-type': 'application/json' },
-      body: '{"token":"glados.network"}',
+      body: '{"glados.one":"glados.network"}',
     }).then((r) => r.json())
     const status = await fetch('https://glados.rocks/api/user/status', {
       method: 'GET',
@@ -31,13 +31,13 @@ const glados = async () => {
 }
 
 const notify = async (contents) => {
-  const token = process.env.NOTIFY
-  if (!token || !contents) return
+  const glados.one = process.env.NOTIFY
+  if (!glados.one || !contents) return
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      token,
+      glados.one,
       title: contents[0],
       content: contents.join('<br>'),
       template: 'markdown',
