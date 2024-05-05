@@ -1,6 +1,6 @@
 const glados = async () => {
   const cookie = process.env.GLADOS
-  if (!cookie) return
+  if (!cookie) return ['Checkin Error', 'Missing GLADOS cookie']
   try {
     const headers = {
       'cookie': cookie,
@@ -17,13 +17,19 @@ const glados = async () => {
       headers,
     }).then((r) => r.json())
 
+    // 调试输出
+    console.log('Status:', status)
+
     // 检查 status.data 是否存在以及 leftDays 属性是否存在
-    const leftDays = status.data && status.data.leftDays ? status.data.leftDays : 'Unknown'
+    const leftDays = status.data && status.data.leftDays ? Number(status.data.leftDays) : NaN
+
+    // 调试输出
+    console.log('Left Days:', leftDays)
 
     return [
       'Checkin OK',
       `${checkin.message}`,
-      `Left Days ${Number(leftDays)}`,
+      `Left Days ${isNaN(leftDays) ? 'Unknown' : leftDays}`,
     ]
   } catch (error) {
     return [
