@@ -16,10 +16,14 @@ const glados = async () => {
       method: 'GET',
       headers,
     }).then((r) => r.json())
+
+    // 检查 status.data 是否存在以及 leftDays 属性是否存在
+    const leftDays = status.data && status.data.leftDays ? status.data.leftDays : 'Unknown'
+
     return [
       'Checkin OK',
       `${checkin.message}`,
-      `Left Days ${Number(status.data.leftDays)}`,
+      `Left Days ${Number(leftDays)}`,
     ]
   } catch (error) {
     return [
